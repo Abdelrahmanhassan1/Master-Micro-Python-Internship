@@ -28,7 +28,7 @@ The function <em>"check_entered_input_values"</em> checks the user input values 
 
 In case of invalid input values, the application shows the error message using <em>QMessageBox</em> from <em>PySide2.QtWidgets</em>.<br />
 
-The function <em>"calculate_function_expression"</em> takes the user function from input field and divide it into expressions.<br />
+The function <em>"calculate_function_expression"</em> takes the user function from input field then removes the spaces between characters and finally divide it into expressions.<br />
 
 These expressions are then added together into a single equation variable. According to the minimum and maximum value, the equation variable is calculated and the result is displayed in the <em>matplotlib figure</em>.<br />
 
@@ -44,10 +44,81 @@ The figure title has the user function written in a right format. Like if the us
 
 ### Valid Examples
 
-![Working Examples]()
+<h2>1st order function</h2>
+
+<img src="./screenshots/Valid_Input/plot2.png" />
+
+<h2>2nd order function</h2>
+
+<img src="./screenshots/Valid_Input/plot1.png" />
+
+<h2>Reformating the function</h2>
+
+<img src="./screenshots/Valid_Input/plot3.png" />
+
+<h2>plotting fucntion with factors of x</h2>
+
+<img src="./screenshots/Valid_Input/plot4.png" />
+
+<h2>Reordering the multiorder fucntion</h2>
+
+<img src="./screenshots/Valid_Input/plot5.png" />
 
 ### Invalid Examples
 
-![Invalid Examples]()
+<h2>Empty input fields</h2>
+
+<img src="./screenshots/Invalid_Input/error1.png" />
+
+<h2>Maximum value is less than minimum value</h2>
+
+<img src="./screenshots/Invalid_Input/error2.png" />
+
+<h2>Invalid float numbers</h2>
+
+<img src="./screenshots/Invalid_Input/error3.png" />
+
+<h2>Invalid characters</h2>
+
+<img src="./screenshots/Invalid_Input/error4.png" />
+
+<img src="./screenshots/Invalid_Input/error5.png" />
+
+<h2>Invalid function format</h2>
+
+<img src="./screenshots/Invalid_Input/error6.png" />
+
+<h2>Division by zero</h2>
+
+<img src="./screenshots/Invalid_Input/error7.png" />
+
+## Added Feature
+
+<p>
+<em>Save figure</em> button for saving the figure plotted in the gui, poping up a message box for the user to enter the name of the figure to be saved. <br />
+Second  message box appears to tell the user for successful or unsuccessful saving of the figure. <br />
+</p>
+
+<img src="./screenshots/saveFigure1.png" />
+
+<img src="./screenshots/saveFigure2.png" />
 
 ## Testing the application
+
+```
+# run the test
+pytest
+```
+
+<p>The tests include:
+<ul>
+<li>Testing empty fields</li>
+<li>Testing greater minimum value that maximum value</li>
+<li>Testing invalid float numbers</li>
+<li>Testing invalid characters</li>
+<li>Testing invalid function format</li>
+<li>Testing division by zero</li>
+<li>Testing valid input values</li>
+
+</ul>
+</p>

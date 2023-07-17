@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
         # plot it on the figure
         ###
         try:
-            self.user_function = self.ui.function_input.text().strip()
+            self.user_function = self.ui.function_input.text().strip().replace(" ", "")
             self.max_range_value = self.ui.max_value_input.text()
             self.min_range_value = self.ui.min_value_input.text()
 
@@ -183,6 +183,12 @@ class MainWindow(QMainWindow):
                     if (function[index] == "x"):
                         new_expression /= self.x_symbol
                     elif (function[index].isdigit()):
+                        if np.double(function[index]) == 0:
+                            self.raise_error(
+                                "Division by zero is not allowed.")
+                            added_expressions = []
+                            new_expression = 1
+                            return False
                         new_expression /= np.double(function[index])
 
                 # if having a number

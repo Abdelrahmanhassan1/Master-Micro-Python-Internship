@@ -175,3 +175,24 @@ def test_invalid_function_format(qtbot):
     qtbot.mouseClick(window.ui.pushButton, Qt.LeftButton)
 
     assert error_message == "The function can't start or end with operator."
+
+
+def test_division_by_zero(qtbot):
+    window = MainWindow()
+    qtbot.addWidget(window)
+
+    error_message = ""
+
+    def mock_raise_error(message):
+        nonlocal error_message
+        error_message = message
+
+    window.raise_error = mock_raise_error
+
+    qtbot.keyClicks(window.ui.function_input, "x^2 + 3/0")
+    qtbot.keyClicks(window.ui.min_value_input, "3")
+    qtbot.keyClicks(window.ui.max_value_input, "5")
+
+    qtbot.mouseClick(window.ui.pushButton, Qt.LeftButton)
+
+    assert error_message == "Division by zero is not allowed."
