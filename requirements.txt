@@ -1,0 +1,8 @@
+#### requirements without version specifiers
+PySide2
+sympy
+numpy
+matplotlib
+pytest
+pytest-qt
+

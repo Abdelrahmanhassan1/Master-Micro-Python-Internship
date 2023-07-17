@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
         self.min_range_value = 0
         self.valid_chars = ["x", "1", "2", "3", "4", "5", "6",
                             "7", "8", "9", "0", "*", "/", "-", "^", "+", ".", " "]
-        self.operators = ["*", "/", "^"]
+        self.operators = ["*", "/", "^", "+", "-"]
         self.x_symbol = sympy.symbols("x")
 
         # Adding the matplotlib figure to the application
@@ -53,11 +53,28 @@ class MainWindow(QMainWindow):
                     "Maximum value must be greater than Minimum value.")
                 return False
 
+            for char in function:
+                if char not in self.valid_chars:
+                    self.raise_error(f"Char ( {char} ) is not valid!")
+                    return False
+
+            first_char = function[0]
+            last_char = function[-1]
+            if first_char in self.operators or last_char in self.operators:
+                self.raise_error(
+                    f"The function can't start or end with operator.")
+                return False
+
             return True
         except Exception as e:
             print(e)
 
     def get_user_function(self):
+        ###
+        # This function takes the user function and validate it with
+        # other function, then takes the expressions of the user function and
+        # plot it on the figure
+        ###
         try:
             self.user_function = self.ui.function_input.text().strip()
             self.max_range_value = self.ui.max_value_input.text()
@@ -119,19 +136,27 @@ class MainWindow(QMainWindow):
             print(e)
 
     def calculate_function_expression(self, function):
+        ###
+        # The function used to calculate the expression of the given function
+        # and return a list of the expressions
+        # These expressions will be used to plot the function
+        ###
         try:
             added_expressions = []
             new_expression = 1
 
             index = 0
+            # dividing the function into expressions
             while True:
                 if index == len(function):
                     added_expressions.append(new_expression)
                     break
-
                 char = function[index]
-                if char == "x":
+
+                # if having the x character : convert to lowercase
+                if char.lower() == "x":
                     new_expression *= self.x_symbol
+
                 # if having a power character
                 elif char == "^":
                     index += 1
@@ -144,6 +169,7 @@ class MainWindow(QMainWindow):
                             new_expression *= np.double(function[index-2])
                         power -= 1
 
+                # if having a multiplication character
                 elif char == "*":
                     index += 1
                     if (function[index] == "x"):
@@ -151,6 +177,7 @@ class MainWindow(QMainWindow):
                     elif (function[index].isdigit()):
                         new_expression *= np.double(function[index])
 
+                # if having a division character
                 elif char == "/":
                     index += 1
                     if (function[index] == "x"):
@@ -158,14 +185,28 @@ class MainWindow(QMainWindow):
                     elif (function[index].isdigit()):
                         new_expression /= np.double(function[index])
 
+                # if having a number
                 elif char.isdigit():
                     first_index = index
+                    float_number_flag = False
+
+                    # processding the experession till the number ends
                     while True:
                         index += 1
                         if index == len(function):
                             break
                         next_char = function[index]
-                        if next_char.isdigit() or next_char == ".":
+                        if next_char.isdigit():
+                            continue
+                        elif next_char == ".":
+                            # if the number has more than one dot
+                            if float_number_flag:
+                                self.raise_error(
+                                    "Floating Numbers must have one dot. (i.e 0.21)")
+                                added_expressions = []
+                                new_expression = 1
+                                return False
+                            float_number_flag = True
                             continue
                         else:
                             break
@@ -178,16 +219,19 @@ class MainWindow(QMainWindow):
                         new_expression *= np.double(
                             function[first_index:last_index])
 
+                # if having an addition character
                 elif char == "+":
                     if index != 0:
                         added_expressions.append(new_expression)
                     new_expression = 1
 
+                # if having a subtraction character
                 elif char == "-":
                     if index != 0:
                         added_expressions.append(new_expression)
                     new_expression = -1
 
+                # if having a dot character
                 elif char == ".":
                     self.raise_error(
                         "Floating Numbers must start with Digit. (i.e 0.21)")
