@@ -38,61 +38,57 @@ The figure title has the user function written in the right format. Like if the 
 
 ## Demo
 
-
-
 https://github.com/Abdelrahmanhassan1/Master-Micro-Python-Internship/assets/66575436/3e06d9f2-d797-4583-b53e-1c3a7adf8653
-
-
 
 ## Screenshots
 
-### Valid Examples
+### Examples of Valid Inputs
 
-<h2>1st order function</h2>
+<h3>1st order function</h3>
 
 <img src="./screenshots/Valid_Input/plot2.png" />
 
-<h2>2nd order function</h2>
+<h3>2nd order function</h3>
 
 <img src="./screenshots/Valid_Input/plot1.png" />
 
-<h2>Reformating the function</h2>
+<h3>Reformating the function in the figure title</h3>
 
 <img src="./screenshots/Valid_Input/plot3.png" />
 
-<h2>plotting fucntion with factors of x</h2>
+<h3>plotting function with factors of x</h3>
 
 <img src="./screenshots/Valid_Input/plot4.png" />
 
-<h2>Reordering the multiorder fucntion</h2>
+<h3>Reordering the function in the figure title</h3>
 
 <img src="./screenshots/Valid_Input/plot5.png" />
 
-### Invalid Examples
+### Examples of Invalid Inputs
 
-<h2>Empty input fields</h2>
+<h3>Empty input fields</h3>
 
 <img src="./screenshots/Invalid_Input/error1.png" />
 
-<h2>Maximum value is less than minimum value</h2>
+<h3>Maximum value is less than minimum value</h3>
 
 <img src="./screenshots/Invalid_Input/error2.png" />
 
-<h2>Invalid float numbers</h2>
+<h3>Invalid float numbers</h3>
 
 <img src="./screenshots/Invalid_Input/error3.png" />
 
-<h2>Invalid characters</h2>
+<h3>Invalid characters</h3>
 
 <img src="./screenshots/Invalid_Input/error4.png" />
 
 <img src="./screenshots/Invalid_Input/error5.png" />
 
-<h2>Invalid function format</h2>
+<h3>Invalid function format</h3>
 
 <img src="./screenshots/Invalid_Input/error6.png" />
 
-<h2>Division by zero</h2>
+<h3>Division by zero</h3>
 
 <img src="./screenshots/Invalid_Input/error7.png" />
 
